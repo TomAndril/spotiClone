@@ -3,12 +3,14 @@ const next = require("next");
 
 const compression = require("compression");
 const port = parseInt(process.env.PORT, 10) || 3000;
-const dev = process.env.NODE_ENV === "dev";
+const dev = true;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const withImages = require("next-images");
+module.exports = withImages({});
 
 app.prepare().then(() => {
   const server = express();
