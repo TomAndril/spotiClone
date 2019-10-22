@@ -1,1 +1,1 @@
-# NextJS + Express boilerplate
+# A simple Spotify Web player clone.
