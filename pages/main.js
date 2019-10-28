@@ -4,6 +4,7 @@ import axios from "axios";
 import Sidenav from "../components/Sidenav";
 import Player from "../components/Player";
 import nullLogo from "../static/null-logo.png";
+import { mainStyle } from "../styles/main";
 
 class main extends React.Component {
   constructor(props) {
@@ -94,12 +95,9 @@ class main extends React.Component {
           />
         </div>
 
-        <style jsx global>{`
-          body {
-            font-family: "Montserrat", sans-serif;
-            margin: 0;
-          }
-        `}</style>
+        <style jsx global>
+          {mainStyle}
+        </style>
       </React.Fragment>
     );
   }
