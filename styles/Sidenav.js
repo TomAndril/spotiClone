@@ -63,8 +63,9 @@ export const sidenavStyles = css`
     align-items: center;
     justify-content: flex-start;
     padding: 0px 10px 5px 10px;
-    height: 100%;
-  }
+    position: absolute;
+    bottom: 110px;
+  } 
 
   .user-data img {
     width: 15%;

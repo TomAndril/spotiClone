@@ -8,6 +8,7 @@ function MainContent() {
       <div className='main-content-container'>
         <Header />
         <FeaturedPlaylist />
+        <FeaturedPlaylist />
       </div>
 
       <style jsx>{mainContentStyles}</style>

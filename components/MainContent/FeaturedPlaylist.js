@@ -20,9 +20,15 @@ function FeaturedPlaylist(props) {
             <Featured image={nullImage} />
           ) : (
             props.featuredPlaylists.playlists.items
-              .slice(0, 5)
+              .slice(0, 6)
               .map((elem, index) => {
-                return <Featured key={index} image={elem.images[0].url} />;
+                return (
+                  <Featured
+                    key={index}
+                    image={elem.images[0].url}
+                    playlistName={elem.name}
+                  />
+                );
               })
           )}
         </div>
@@ -34,6 +40,7 @@ function FeaturedPlaylist(props) {
 }
 
 function mapStateToProps(state) {
+  console.log(state.featuredPlaylists);
   return {
     featuredPlaylists: state.featuredPlaylists
   };
