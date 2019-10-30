@@ -1,6 +1,8 @@
 import brandImg from "../static/Spotify_Logo_CMYK_White.png";
 import { sidenavStyles } from "../styles/Sidenav";
+import nullImg from "../static/null-logo.png";
 import { connect } from "react-redux";
+import { IoIosAlbums, IoIosSearch, IoMdHome } from "react-icons/io";
 
 function Sidenav(props) {
   return (
@@ -13,15 +15,15 @@ function Sidenav(props) {
         <div className="nav-links">
           <ul>
             <li>
-              <i className="fas fa-home fa-lg"></i>
+              <IoMdHome />
               <span>Inicio</span>
             </li>
             <li>
-              <i className="fas fa-search fa-lg"></i>
+              <IoIosSearch />
               <span>Buscar</span>
             </li>
             <li>
-              <i className="fas fa-book-open fa-lg"></i>
+              <IoIosAlbums />
               <span>Tu Biblioteca</span>
             </li>
           </ul>
@@ -35,6 +37,14 @@ function Sidenav(props) {
                   return <li key={index}>{elem.name}</li>;
                 })}
           </ul>
+        </div>
+        <div className="user-data">
+          <img
+            src={
+              !props.userData.images ? nullImg : props.userData.images[0].url
+            }
+          />
+          <span>{props.userData.display_name}</span>
         </div>
       </div>
 

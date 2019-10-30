@@ -20,5 +20,16 @@ export const playerStyles = css`
     width: 80px;
     height: 80px;
   }
+
+  .currently-playing-container .song {
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+
+  .currently-playing-container .artist {
+    color: #b3b3b3;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
 `;
-  

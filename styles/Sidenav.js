@@ -44,10 +44,39 @@ export const sidenavStyles = css`
 
   .playlists p {
     padding-left: 15px;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
   }
 
   .playlists ul li {
     list-style-type: none;
-    padding: 5px 0px 5px 0px;
+    padding: 10px 0px 10px 0px;
+    font-size: 0.7em;
+    letter-spacing: 2px;
+    font-weight: 800;
+  }
+
+  .user-data {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 10px 5px 10px;
+    height: 100%;
+  }
+
+  .user-data img {
+    width: 15%;
+    border-radius: 25px;
+  }
+
+  .user-data span {
+    padding-left: 10px;
+    color: #b3b3b3;
+    font-weight: 900;
+    font-size: 0.7em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 `;

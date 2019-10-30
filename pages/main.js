@@ -3,12 +3,14 @@ import HeadTag from "../components/Head";
 import axios from "axios";
 import Sidenav from "../components/Sidenav";
 import Player from "../components/Player";
+import MainContent from '../components/MainContent/MainContent';
 import { connect } from "react-redux";
 import {
   setToken,
   setUserData,
   setCurrentlyPlaying,
-  setUserPlaylists
+  setUserPlaylists,
+  setFeaturedPlaylists
 } from "../store";
 
 class Main extends React.Component {
@@ -54,6 +56,15 @@ class Main extends React.Component {
       }
     );
 
+    const featuredPlaylistsRequest = await axios.get(
+      "https://api.spotify.com/v1/browse/featured-playlists",
+      {
+        headers: {
+          Authorization: "Bearer " + hash.access_token
+        }
+      }
+    );
+
     /////////////////////////
     // DISPATCH DE ACTIONS //
     /////////////////////////
@@ -62,6 +73,7 @@ class Main extends React.Component {
     dispatch(setUserData(nameRequest.data));
     dispatch(setUserPlaylists(userPlaylistsRequest.data.items));
     dispatch(setCurrentlyPlaying(currentlyPlayingRequest.data));
+    dispatch(setFeaturedPlaylists(featuredPlaylistsRequest.data))
   }
 
   render() {
@@ -70,6 +82,7 @@ class Main extends React.Component {
         <div>
           <HeadTag title="MusikIT Main" />
           <Sidenav />
+          <MainContent />
           <Player />
         </div>
 

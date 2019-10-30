@@ -16,15 +16,21 @@ function Player(props) {
           />
         </div>
         <div>
-          <div>
-            {props.currentlyPlaying === ""
-              ? ""
-              : props.currentlyPlaying.item.name}
-          </div>
-          <div>
-            {props.currentlyPlaying === ""
-              ? "No estas reproduciendo nada"
-              : props.currentlyPlaying.item.artists[0].name}
+          <div className="currently-playing-container">
+            <div>
+              {props.currentlyPlaying === "" ? (
+                ""
+              ) : (
+                <span className='song'>{props.currentlyPlaying.item.name}</span>
+              )}
+            </div>
+            <div>
+              {props.currentlyPlaying === "" ? (
+                "No estas reproduciendo nada"
+              ) : (
+                <span className='artist'>{props.currentlyPlaying.item.artists[0].name}</span>
+              )}
+            </div>
           </div>
         </div>
       </div>
