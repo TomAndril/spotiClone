@@ -37,4 +37,17 @@ export const sidenavStyles = css`
     font-size: 0.8em;
     padding-left: 22px;
   }
+
+  .user-container {
+    margin-top: 190px;
+  }
+
+  .playlists p {
+    padding-left: 15px;
+  }
+
+  .playlists ul li {
+    list-style-type: none;
+    padding: 5px 0px 5px 0px;
+  }
 `;

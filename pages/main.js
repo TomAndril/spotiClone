@@ -3,21 +3,18 @@ import HeadTag from "../components/Head";
 import axios from "axios";
 import Sidenav from "../components/Sidenav";
 import Player from "../components/Player";
-import nullLogo from "../static/null-logo.png";
-import { mainStyle } from "../styles/main";
+import { connect } from "react-redux";
+import {
+  setToken,
+  setUserData,
+  setCurrentlyPlaying,
+  setUserPlaylists
+} from "../store";
 
-class main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      token: null,
-      userName: null,
-      currentlyPlaying: "",
-      userPlaylists: []
-    };
-  }
-
+class Main extends React.Component {
   async componentDidMount() {
+    const { dispatch } = this.props;
+
     const hash = window.location.hash
       .substring(1)
       .split("&")
@@ -57,50 +54,34 @@ class main extends React.Component {
       }
     );
 
-    /////////////////////////////
+    /////////////////////////
+    // DISPATCH DE ACTIONS //
+    /////////////////////////
 
-    this.setState({
-      token: hash.access_token,
-      userName: nameRequest.data.display_name,
-      currentlyPlaying: currentlyPlayingRequest.data,
-      userPlaylists: userPlaylistsRequest.data.items
-    });
+    dispatch(setToken(hash.access_token));
+    dispatch(setUserData(nameRequest.data));
+    dispatch(setUserPlaylists(userPlaylistsRequest.data.items));
+    dispatch(setCurrentlyPlaying(currentlyPlayingRequest.data));
   }
 
   render() {
     return (
       <React.Fragment>
         <div>
-          <HeadTag />
-          <Sidenav
-            playlists={
-              !this.state.userPlaylists
-                ? "Cargando..."
-                : this.state.userPlaylists.map((elem, index) => {
-                    return <li key={index}>{elem.name}</li>;
-                  })
-            }
-          />
-          <Player
-            isPlaying={
-              this.state.currentlyPlaying === ""
-                ? "No se esta reproduciendo nada"
-                : this.state.currentlyPlaying.item.artists[0].name
-            }
-            albumImg={
-              this.state.currentlyPlaying === ""
-                ? nullLogo
-                : this.state.currentlyPlaying.item.album.images[1].url
-            }
-          />
+          <HeadTag title="MusikIT Main" />
+          <Sidenav />
+          <Player />
         </div>
 
-        <style jsx global>
-          {mainStyle}
-        </style>
+        <style jsx global>{`
+          body {
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+          }
+        `}</style>
       </React.Fragment>
     );
   }
 }
 
-export default main;
+export default connect()(Main);

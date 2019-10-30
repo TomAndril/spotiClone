@@ -1,5 +1,6 @@
 import brandImg from "../static/Spotify_Logo_CMYK_White.png";
 import { sidenavStyles } from "../styles/Sidenav";
+import { connect } from "react-redux";
 
 function Sidenav(props) {
   return (
@@ -26,8 +27,14 @@ function Sidenav(props) {
           </ul>
         </div>
         <div className="playlists">
-          <span>Playlists</span>
-          <ul>{props.playlists}</ul>
+          <p>Playlists</p>
+          <ul>
+            {!props.playLists
+              ? "Cargando..."
+              : props.playLists.map((elem, index) => {
+                  return <li key={index}>{elem.name}</li>;
+                })}
+          </ul>
         </div>
       </div>
 
@@ -36,4 +43,11 @@ function Sidenav(props) {
   );
 }
 
-export default Sidenav;
+function mapStateToProps(state) {
+  return {
+    playLists: state.userPlaylists,
+    userData: state.userData
+  };
+}
+
+export default connect(mapStateToProps)(Sidenav);

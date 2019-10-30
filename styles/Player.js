@@ -21,3 +21,4 @@ export const playerStyles = css`
     height: 80px;
   }
 `;
+  
