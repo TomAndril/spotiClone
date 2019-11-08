@@ -1,19 +1,22 @@
 import { mainContentStyles } from "../../styles/MainContent";
-import Header from './Header';
-import FeaturedPlaylist from './FeaturedPlaylist'
+import Header from "./Header";
+import FeaturedPlaylist from "./FeaturedPlaylists/FeaturedPlaylist";
+import TopArtistsPlaylists from "./TopArtistsPlaylists/TopArtistsPlaylists";
 
-function MainContent() {
-  return (
-    <React.Fragment>
-      <div className='main-content-container'>
-        <Header />
-        <FeaturedPlaylist />
-        <FeaturedPlaylist />
-      </div>
+class MainContent extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <div className="main-content-container">
+          <Header />
+          <TopArtistsPlaylists />
+          <FeaturedPlaylist />
+        </div>
 
-      <style jsx>{mainContentStyles}</style>
-    </React.Fragment>
-  );
+        <style jsx>{mainContentStyles}</style>
+      </React.Fragment>
+    );
+  }
 }
 
 export default MainContent;

@@ -3,14 +3,15 @@ import HeadTag from "../components/Head";
 import axios from "axios";
 import Sidenav from "../components/Sidenav";
 import Player from "../components/Player";
-import MainContent from '../components/MainContent/MainContent';
+import MainContent from "../components/MainContent/MainContent";
 import { connect } from "react-redux";
 import {
   setToken,
   setUserData,
   setCurrentlyPlaying,
   setUserPlaylists,
-  setFeaturedPlaylists
+  setFeaturedPlaylists,
+  setTopArtists
 } from "../store";
 
 class Main extends React.Component {
@@ -65,6 +66,15 @@ class Main extends React.Component {
       }
     );
 
+    const topArtistsRequest = await axios.get(
+      "https://api.spotify.com/v1/me/top/artists",
+      {
+        headers: {
+          Authorization: "Bearer " + hash.access_token
+        }
+      }
+    );
+
     /////////////////////////
     // DISPATCH DE ACTIONS //
     /////////////////////////
@@ -73,7 +83,8 @@ class Main extends React.Component {
     dispatch(setUserData(nameRequest.data));
     dispatch(setUserPlaylists(userPlaylistsRequest.data.items));
     dispatch(setCurrentlyPlaying(currentlyPlayingRequest.data));
-    dispatch(setFeaturedPlaylists(featuredPlaylistsRequest.data))
+    dispatch(setFeaturedPlaylists(featuredPlaylistsRequest.data));
+    dispatch(setTopArtists(topArtistsRequest.data.items));
   }
 
   render() {

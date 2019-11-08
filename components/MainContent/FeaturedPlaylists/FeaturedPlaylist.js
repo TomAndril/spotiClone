@@ -1,6 +1,6 @@
-import { FeaturedPlaylistStyles } from "../../styles/FeaturedPlaylist";
+import { FeaturedPlaylistStyles } from "../../../styles/FeaturedPlaylist";
 import Featured from "./Featured";
-import nullImage from "../../static/null-logo.png";
+import nullImage from "../../../static/null-logo.png";
 import { connect } from "react-redux";
 
 function FeaturedPlaylist(props) {
@@ -14,7 +14,6 @@ function FeaturedPlaylist(props) {
             <span>{props.featuredPlaylists.message}</span>
           )}
         </div>
-
         <div className="playlist-carousel">
           {!props.featuredPlaylists.playlists ? (
             <Featured image={nullImage} />
@@ -27,6 +26,7 @@ function FeaturedPlaylist(props) {
                     key={index}
                     image={elem.images[0].url}
                     playlistName={elem.name}
+                    url={elem.id}
                   />
                 );
               })
@@ -40,7 +40,6 @@ function FeaturedPlaylist(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state.featuredPlaylists);
   return {
     featuredPlaylists: state.featuredPlaylists
   };

@@ -21,6 +21,10 @@ app.prepare().then(() => {
   server.use(bodyParser.urlencoded({ extended: false }));
   server.use(cookieParser());
 
+  server.get("/playlist/:id", (req, res) => {
+    return app.render(req, res, "/playlist", req.params);
+  });
+
   server.get("*", (req, res) => {
     return handle(req, res);
   });

@@ -7,7 +7,8 @@ const initialState = {
   userData: [],
   currentlyPlaying: "",
   userPlaylists: [],
-  featuredPlaylists: []
+  featuredPlaylists: [],
+  topArtists: []
 };
 
 // REDUCERS
@@ -32,6 +33,10 @@ export const reducer = (state = initialState, action) => {
     case "SET_FEATURED_PLAYLISTS":
       return Object.assign({}, state, {
         featuredPlaylists: action.value
+      });
+    case "SET_TOP_ARTISTS":
+      return Object.assign({}, state, {
+        topArtists: action.value
       });
     default:
       return state;
@@ -70,6 +75,13 @@ export const setUserPlaylists = value => dispatch => {
 export const setFeaturedPlaylists = value => dispatch => {
   return dispatch({
     type: "SET_FEATURED_PLAYLISTS",
+    value
+  });
+};
+
+export const setTopArtists = value => dispatch => {
+  return dispatch({
+    type: "SET_TOP_ARTISTS",
     value
   });
 };
