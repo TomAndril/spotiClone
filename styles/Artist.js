@@ -22,4 +22,8 @@ export const artistStyles = css`
     font-size: 0.8em;
     font-weight: 600;
   }
+
+  .artist-container a {
+    text-decoration: none;
+  }
 `;

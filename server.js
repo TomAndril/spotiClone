@@ -25,6 +25,10 @@ app.prepare().then(() => {
     return app.render(req, res, "/playlist", req.params);
   });
 
+  server.get("/artist/:id", (req, res) => {
+    return app.render(req, res, "/artist", req.params);
+  });
+
   server.get("*", (req, res) => {
     return handle(req, res);
   });

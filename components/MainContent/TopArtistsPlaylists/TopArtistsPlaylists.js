@@ -20,6 +20,7 @@ function TopArtistsPlaylists(props) {
                   key={index}
                   image={elem.images[0].url}
                   artistName={elem.name}
+                  url={elem.id}
                 />
               );
             })

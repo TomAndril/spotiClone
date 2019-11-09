@@ -31,13 +31,22 @@ class playlist extends React.Component {
     this.setState({
       playlist: playlistRequest.data
     });
-    console.log(playlistRequest.data);
   }
 
   render() {
+    function milisecondsToMinutes(millis) {
+      var minutes = Math.floor(millis / 60000);
+      var seconds = ((millis % 60000) / 1000).toFixed(0);
+      return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
+
     return (
       <React.Fragment>
-        <Head title={!this.state.playlist.name ? 'Cargando...' : this.state.playlist.name} />
+        <Head
+          title={
+            !this.state.playlist.name ? "Cargando..." : this.state.playlist.name
+          }
+        />
 
         {!this.props.token ? (
           <React.Fragment>
@@ -77,11 +86,24 @@ class playlist extends React.Component {
                   <div>
                     <ul>
                       {this.state.playlist.tracks.items.map((elem, index) => {
-                        return(
-                          <li>
-                            {elem.track.name}
-                          </li>
-                        )
+                        return (
+                          <React.Fragment>
+                            <div className="track" key={index}>
+                              <div>
+                                <li className="track-name">
+                                  {elem.track.name}
+                                  <span>{elem.track.artists[0].name}</span>
+                                </li>
+                              </div>
+                              <div>
+                                <span className="track-duration">
+                                  {milisecondsToMinutes(elem.track.duration_ms)}
+                                </span>
+                              </div>
+                            </div>
+                            < hr / >
+                          </React.Fragment>
+                        );
                       })}
                     </ul>
                   </div>
@@ -156,6 +178,33 @@ class playlist extends React.Component {
             text-decoration: none;
             color: lightgrey;
             font-weight: 600;
+          }
+
+          .track {
+            display: flex;
+            align-items: center:
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 10px 0px 10px 0px;
+          }
+
+          .track-name {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #fff;
+            
+          }
+
+          .track-name span {
+            color: #b3b3b3;
+            font-size: 1.2em;
+          }
+
+          .track-duration {
+            padding-right:45px;
+            color: #fff;
+            font-weight: 900;
           }
         `}</style>
       </React.Fragment>

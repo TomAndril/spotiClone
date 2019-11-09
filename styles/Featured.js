@@ -13,10 +13,6 @@ export const featuredStyles = css`
     justify-content: center;
   }
 
-  .featured-container:hover {
-    cursor: pointer;
-  }
-
   .featured-container div img {
     width: 100%;
   }
